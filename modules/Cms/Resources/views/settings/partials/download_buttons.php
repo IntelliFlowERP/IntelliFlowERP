@@ -1,0 +1,184 @@
+<div class="pos-tab-content">
+    <?php
+        $buttons = is_array($details['btns'] ?? null) ? $details['btns'] : [];
+        $download_files = $download_files ?? [];
+        $download_file_input = !empty($download_files) ? ['list' => 'cms_public_download_files'] : [];
+        $desktop_buttons = [
+            'windows' => [
+                'text' => $buttons['windows']['text'] ?? 'Windows App Download',
+                'link' => $buttons['windows']['link'] ?? '',
+                'title' => __('cms::lang.download_win_btn'),
+                'icon' => 'fab fa-windows',
+            ],
+            'windows_2' => [
+                'text' => $buttons['windows_2']['text'] ?? 'Windows App2 Download',
+                'link' => $buttons['windows_2']['link'] ?? '',
+                'title' => __('cms::lang.download_win_btn_2'),
+                'icon' => 'fab fa-windows',
+            ],
+            'linux' => [
+                'text' => $buttons['linux']['text'] ?? 'Linux App Download',
+                'link' => $buttons['linux']['link'] ?? '',
+                'title' => __('cms::lang.download_linux_btn'),
+                'icon' => 'fab fa-linux',
+            ],
+            'osx' => [
+                'text' => $buttons['osx']['text'] ?? 'OSX App Download',
+                'link' => $buttons['osx']['link'] ?? '',
+                'title' => __('cms::lang.download_osx_btn'),
+                'icon' => 'fab fa-apple',
+            ],
+        ];
+    ?>
+    <div class="mb-4">
+        <h5 class="fw-bold text-dark mb-1">
+            <i class="fas fa-download me-2" style="color: var(--bs-primary)"></i>
+            <?php echo app('translator')->get('cms::lang.download_buttons'); ?>
+        </h5>
+        <p class="text-muted" style="font-size: 0.8125rem;">
+            <?php echo app('translator')->get('cms::lang.download_buttons_help'); ?>
+        </p>
+        <p class="text-muted" style="font-size: 0.8125rem;">
+            Enter a full URL for an external store, or only the file name for a file in <code>public/downloads</code>.
+            File names use this site's downloads folder when available; otherwise they use the primary domain's downloads folder.
+        </p>
+    </div>
+
+    
+    <div class="cms-btn-settings-card">
+        <div class="settings-card-header">
+            <i class="fab fa-android"></i>
+            <h6><?php echo app('translator')->get('cms::lang.android_apps'); ?></h6>
+        </div>
+        <?php
+            $android_app_1 = [
+                'text' => $details['btns']['android_app_1']['text'] ?? 'Google Play',
+                'link' => $details['btns']['android_app_1']['link'] ?? ''
+            ];
+            $android_app_2 = [
+                'text' => $details['btns']['android_app_2']['text'] ?? 'APK Download',
+                'link' => $details['btns']['android_app_2']['link'] ?? ''
+            ];
+        ?>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="fw-bold text-muted mb-2" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    <?php echo app('translator')->get('cms::lang.android_app_primary'); ?>
+                </p>
+                <div class="form-group mb-3">
+                    <?php echo Form::label('android_app_1_text', __('cms::lang.button_text') . ':'); ?>
+
+                    <?php echo Form::text('btns[android_app_1][text]', $android_app_1['text'], ['class' => 'form-control', 'placeholder' => 'Google Play']); ?>
+
+                </div>
+                <div class="form-group mb-3">
+                    <?php echo Form::label('android_app_1_link', __('cms::lang.button_link') . ':'); ?>
+
+                    <?php echo Form::text('btns[android_app_1][link]', $android_app_1['link'], array_merge(['class' => 'form-control', 'placeholder' => 'https://play.google.com/store/apps/details?id=...'], $download_file_input)); ?>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p class="fw-bold text-muted mb-2" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    <?php echo app('translator')->get('cms::lang.android_app_secondary'); ?>
+                </p>
+                <div class="form-group mb-3">
+                    <?php echo Form::label('android_app_2_text', __('cms::lang.button_text') . ':'); ?>
+
+                    <?php echo Form::text('btns[android_app_2][text]', $android_app_2['text'], ['class' => 'form-control', 'placeholder' => 'APK Download']); ?>
+
+                </div>
+                <div class="form-group mb-3">
+                    <?php echo Form::label('android_app_2_link', __('cms::lang.button_link') . ':'); ?>
+
+                    <?php echo Form::text('btns[android_app_2][link]', $android_app_2['link'], array_merge(['class' => 'form-control', 'placeholder' => 'ActuaryPOS-Pro.apk or https://example.com/app.apk'], $download_file_input)); ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="cms-btn-settings-card">
+        <div class="settings-card-header">
+            <i class="fab fa-apple"></i>
+            <h6><?php echo app('translator')->get('cms::lang.ios_apps'); ?></h6>
+        </div>
+        <?php
+            $ios_app_1 = [
+                'text' => $details['btns']['ios_app_1']['text'] ?? 'App Store',
+                'link' => $details['btns']['ios_app_1']['link'] ?? ''
+            ];
+            $ios_app_2 = [
+                'text' => $details['btns']['ios_app_2']['text'] ?? 'TestFlight',
+                'link' => $details['btns']['ios_app_2']['link'] ?? ''
+            ];
+        ?>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="fw-bold text-muted mb-2" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    <?php echo app('translator')->get('cms::lang.ios_app_primary'); ?>
+                </p>
+                <div class="form-group mb-3">
+                    <?php echo Form::label('ios_app_1_text', __('cms::lang.button_text') . ':'); ?>
+
+                    <?php echo Form::text('btns[ios_app_1][text]', $ios_app_1['text'], ['class' => 'form-control', 'placeholder' => 'App Store']); ?>
+
+                </div>
+                <div class="form-group mb-3">
+                    <?php echo Form::label('ios_app_1_link', __('cms::lang.button_link') . ':'); ?>
+
+                    <?php echo Form::text('btns[ios_app_1][link]', $ios_app_1['link'], array_merge(['class' => 'form-control', 'placeholder' => 'https://apps.apple.com/app/...'], $download_file_input)); ?>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p class="fw-bold text-muted mb-2" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    <?php echo app('translator')->get('cms::lang.ios_app_secondary'); ?>
+                </p>
+                <div class="form-group mb-3">
+                    <?php echo Form::label('ios_app_2_text', __('cms::lang.button_text') . ':'); ?>
+
+                    <?php echo Form::text('btns[ios_app_2][text]', $ios_app_2['text'], ['class' => 'form-control', 'placeholder' => 'TestFlight']); ?>
+
+                </div>
+                <div class="form-group mb-3">
+                    <?php echo Form::label('ios_app_2_link', __('cms::lang.button_link') . ':'); ?>
+
+                    <?php echo Form::text('btns[ios_app_2][link]', $ios_app_2['link'], array_merge(['class' => 'form-control', 'placeholder' => 'https://testflight.apple.com/join/...'], $download_file_input)); ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="cms-btn-settings-card">
+        <div class="settings-card-header">
+            <i class="fas fa-desktop"></i>
+            <h6><?php echo app('translator')->get('cms::lang.desktop_apps'); ?></h6>
+        </div>
+        <div class="row">
+            <?php $__currentLoopData = $desktop_buttons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $desktop_button): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col-md-6">
+                    <p class="fw-bold text-muted mb-2" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                        <i class="<?php echo e($desktop_button['icon'], false); ?> me-1"></i><?php echo e($desktop_button['title'], false); ?>
+
+                    </p>
+                    <div class="form-group mb-3">
+                        <?php echo Form::label('desktop_' . $key . '_text', __('cms::lang.button_text') . ':'); ?>
+
+                        <?php echo Form::text('btns[' . $key . '][text]', $desktop_button['text'], ['class' => 'form-control', 'id' => 'desktop_' . $key . '_text']); ?>
+
+                    </div>
+                    <div class="form-group mb-3">
+                        <?php echo Form::label('desktop_' . $key . '_link', __('cms::lang.button_link') . ':'); ?>
+
+                        <?php echo Form::text('btns[' . $key . '][link]', $desktop_button['link'], array_merge(['class' => 'form-control', 'id' => 'desktop_' . $key . '_link', 'placeholder' => 'filename.exe or https://example.com/download'], $download_file_input)); ?>
+
+                    </div>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</div>
