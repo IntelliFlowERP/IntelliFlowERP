@@ -29,10 +29,6 @@ client-license.txt
 .scribe
 .sguard
 .env
-.env.*
-!.env.example
-*.env
-.ot-env
 .shift
 .prettierrc
 readme.pdf
@@ -51,3 +47,4 @@ run_print_server.sh
 # Local AI instructions and generated working artifacts
 /AGENTS.md
 /ai_storage/
+.env.192.168.100.39
